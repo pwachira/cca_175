@@ -1,0 +1,12 @@
+# run from spark-shell cli
+
+import com.databricks.sparlk.avro._
+val o = sqlContext.read.format("com.databricks.spark.avro").load("/user/cloudera/problem1/orders")
+val oi = sqlContext.read.format("com.databricks.spark.avro").load("/user/cloudera/problem1/order_items")
+val od = o.join(oi,$"order_id" === $"order_item_order_id")
+val og1 = od.groupBy("order_date","order_status").agg(sum($"order_item_subtotal"))
+val og = og1.withColumnRenamed("sum(order_item_subtotal)","subtotal")
+
+
+
+
