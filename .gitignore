@@ -1,4 +1,4 @@
 *.avsc
 *.java
 metastore*
-derby.log
+*.log
