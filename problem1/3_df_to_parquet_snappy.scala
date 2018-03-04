@@ -1,3 +1,4 @@
+
 val oi = sqlContext.read.format("com.databricks.spark.avro").load("/user/cloudera/problem1/order_items")
 val o = sqlContext.read.format("com.databricks.spark.avro").load("/user/cloudera/problem1/orders").
       withColumn("order_date_dt",from_unixtime($"order_date"/1000,"yyyy-MM-dd")).
@@ -6,5 +7,5 @@ val o = sqlContext.read.format("com.databricks.spark.avro").load("/user/cloudera
       join(oi,$"order_id" === $"order_item_order_id").
       groupBy("order_status","order_date").
       agg(countDistinct("order_id").as("total_orders"),sum("order_item_subtotal").as("total_amount"))
-
-o. write.parquet("/user/cloudera/problem1/result4a-gzip")
+sqlContext.setConf("spark.sql.parquet.compression.codec","snappy"sqlContext.setConf("spark.sql.parquet.compression.codec","snappy")
+o.write.parquet("/user/cloudera/problem1/result4a-snappy")
