@@ -4,10 +4,12 @@ cca 175 certification tutorial as provided in http://arun-teaches-u-tech.blogspo
 
 Run the files in the order of the filename prefix number
 
-To run the .sh files for example just use 
+To run the .sh files for example just use
+
  + `<filename>.sh`
 
-To run the .scala files use  
+To run the .scala files use
+
  + `spark-shell -i <filaname>.scala`
 
 To run write/read to/from  csv using spark shell, use the following package option:
