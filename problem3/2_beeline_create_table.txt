@@ -1,3 +1,13 @@
-!connect jdbc:hive2://
-create external table orders_sqoop ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe' STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat' OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat' location '/user/cloudera/retail_stage.db/orders' TBLPROPERTIES ('avro.schema.literal'= '{"namespace": "cca175","name": "orders_sqoop","type": "record","fields": [{"name": "order_id","type": "int"},{"name": "order_date", "type": "long"},{"name":"order_customer_id","type": "int"},{"name": "order_status", "type": "string"}]}');
-
+create external table orders_sqoop 
+ROW FORMAT 
+SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe' 
+STORED AS 
+INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat' 
+OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat' 
+location '/user/cloudera/retail_stage.db/orders' 
+TBLPROPERTIES ('avro.schema.literal'= 
+'{"namespace": "cca175","name": "orders_sqoop","type": "record", 
+"fields": [{"name": "order_id","type": "int"}, 
+{"name": "order_date", "type": "long"},
+{"name":"order_customer_id","type": "int"}, 
+{"name": "order_status", "type": "string"}]}');
